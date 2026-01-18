@@ -121,9 +121,6 @@ bool queen_ki_chaal(int board[][100],int i,int j,int n) {
     }
     return true;
 }
-
-
-
 bool nqueen(int board[][100],int row,int n) {
     //base case
 if (row==n) {
