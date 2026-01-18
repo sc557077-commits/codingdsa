@@ -148,9 +148,70 @@ if (row==n) {
     }
     return false;
 }
+bool isSafe(int arr[][9],int i,int j,int n ,int number) {
+    for (int k=0;k<n;k++) {
+        if (arr[k][j]==number || arr[i][k]==number) {
+            return false;;
+        }
+    }
+     n=sqrt(n);
+    int si=(i/n)*n;
+    int sj=(j/n)*n;
+    for (int i=si;i<si+n;i++) {
+        for (int j=sj;j<sj+n;j++) {
+            if (arr[i][j]==number) {
+                return false;;
+            }
+        }
+    }
+    return true;
+}
+bool sudoko(int arr[][9],int i,int j ,int n) {
+    // base case
+    if (i==n) {
+        for (int i=0;i<n;i++) {
+            for (int j=0;j<n;j++) {
+                cout<<arr[i][j]<<" ";
+            }
+            cout<<endl;
+        }
+        return true;
+    }
+if (j==n) {
+    return sudoko(arr,i+1,0,n);
+}
+   if (arr[i][j]!=0) {
+       return sudoko(arr,i,j+1,n);
+   }
+    //recursive
+    for (int number=1;number<=9;number++) {
+        if (isSafe(arr,i,j,n,number)) {
+            arr[i][j]=number;
+            bool kyabaaki=sudoko(arr,i,j+1,n);
 
+            if (kyabaaki) {
+                return true;
+            }
+            arr[i][j]=0;
+        }
+
+    }
+    return false;
+
+}
 int main() {
-
+int mat[9][9] = {
+        {5, 3, 0, 0, 7, 0, 0, 0, 0},
+        {6, 0, 0, 1, 9, 5, 0, 0, 0},
+        {0, 9, 8, 0, 0, 0, 0, 6, 0},
+        {8, 0, 0, 0, 6, 0, 0, 0, 3},
+        {4, 0, 0, 8, 0, 3, 0, 0, 1},
+        {7, 0, 0, 0, 2, 0, 0, 0, 6},
+        {0, 6, 0, 0, 0, 0, 2, 8, 0},
+        {0, 0, 0, 4, 1, 9, 0, 0, 5},
+        {0, 0, 0, 0, 8, 0, 0, 7, 9}
+    };
+    sudoko(mat,0,0,9);
     int board[100][100]={0};
     nqueen(board,0,4);
 
