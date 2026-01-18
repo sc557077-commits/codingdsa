@@ -37,6 +37,8 @@ void mergsort(int *arr, int s,int e) {
     //merge
     sort(arr,a,b,s,e);
 }
+
+//hanoi
 void toh(int n,char s,char h,char d) {
     if (n==0)return;
 
@@ -45,6 +47,8 @@ void toh(int n,char s,char h,char d) {
     cout<<"take disk "<<n<<" from " <<s<<" to "<<d<<endl;
     toh(n-1,h,s,d);
 }
+
+//subsequence
 void subsequence(char* str,char* op,int i,int j) {
     if (str[i]=='\0') {
         op[j]='\0';
@@ -56,6 +60,8 @@ void subsequence(char* str,char* op,int i,int j) {
     subsequence(str,op,i+1,j+1);
 
 }
+
+//permutation
 void permutation(char* str,int i) {
     if (str[i]=='\0') {
         cout<<str<<endl;
@@ -66,6 +72,8 @@ void permutation(char* str,int i) {
         swap(str[i],str[j]);
     }
 }
+
+//mat_in_raze
 bool mat_in_raze(char maze[][5],int sol[][100],int n,int m,int i,int j) {
     //base case
     if (i==n-1 and j==m-1) {
@@ -98,6 +106,8 @@ bool mat_in_raze(char maze[][5],int sol[][100],int n,int m,int i,int j) {
         return false;
     }
 }
+
+//queenPlacing
 bool queen_ki_chaal(int board[][100],int i,int j,int n) {
     for (int k=0;k<n;k++) {
         if (board[k][j]==1) {
@@ -148,6 +158,8 @@ if (row==n) {
     }
     return false;
 }
+
+//sudokogame
 bool isSafe(int arr[][9],int i,int j,int n ,int number) {
     for (int k=0;k<n;k++) {
         if (arr[k][j]==number || arr[i][k]==number) {
